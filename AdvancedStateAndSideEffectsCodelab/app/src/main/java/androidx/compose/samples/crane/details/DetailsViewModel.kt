@@ -22,6 +22,9 @@ import androidx.compose.samples.crane.data.ExploreModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,6 +34,12 @@ class DetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val cityName = savedStateHandle.get<String>(KEY_ARG_DETAILS_CITY_NAME)!!
+
+    // 이렇게도 할 수 있지만?
+//    private val _uiState = MutableStateFlow(DetailsUiState(isLoading = true))
+//    val uiState: StateFlow<DetailsUiState> = _uiState.asStateFlow()
+
+
 
     val cityDetails: Result<ExploreModel>
         get() {
